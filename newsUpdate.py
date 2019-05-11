@@ -11,11 +11,13 @@ import datetime
 import time
 import os
 import logging
+
 # 日志配置
 logDate = time.strftime('%Y%m%d', time.localtime(time.time()))
 logName = logDate + ".log"
 logger = logging.getLogger("__name__")
 logger.setLevel(level = logging.DEBUG)
+# 注意实际部署到VPS使用crontab执行时必须写明全路径
 handler = logging.FileHandler('./log/' + logName) # './log/'用来设置日志路径,必须保证文件夹已创建
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('[%(asctime)s | %(filename)s] %(levelname)s: %(message)s')
