@@ -1,7 +1,7 @@
+# coding:utf-8
 # newsUpdate.py
 # 用于更新新闻数据库(更新日志写入数据库)
 
-# coding:utf-8
 import  urllib.request
 import json
 import pymysql
