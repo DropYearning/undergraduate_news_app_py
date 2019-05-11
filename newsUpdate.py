@@ -1,5 +1,5 @@
 # newsUpdate.py
-# 用于更新新闻数据库
+# 用于更新新闻数据库(更新日志写入.log文件)
 
 # coding:utf-8
 import  urllib.request
