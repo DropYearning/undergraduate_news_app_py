@@ -1,5 +1,5 @@
 # newsUpdate.py
-# 用于更新新闻数据库(更新日志写入.log文件)
+# 用于更新新闻数据库(更新日志写入.log文件), 日志在控制台输出, 并保存在log文件夹下
 
 # coding:utf-8
 import  urllib.request
@@ -185,3 +185,7 @@ updateEnd = datetime.datetime.now()
 usedTime = updateEnd - updateStart
 
 logger.info("本次共更新新闻[%s]条, 花费时间[%s]秒.其中[国内]新闻[%s]条,[国际]新闻[%s]条,[财经]新闻[%s]条,[互联网]新闻[%s]条,[房地产]新闻[%s]条,[汽车]新闻[%s]条,[体育]新闻[%s]条,[娱乐]新闻[%s]条,[游戏]新闻[%s]条,[教育]新闻[%s]条,[科技]新闻[%s]条,[军事]新闻[%s]条,[数码]新闻[%s]条,[社会]新闻[%s]条" % (newsCountAll, usedTime, countDict['国内'], countDict['国际'], countDict['财经'], countDict['互联网'], countDict['房地产'], countDict['汽车'], countDict['体育'], countDict['娱乐'], countDict['游戏'], countDict['教育'], countDict['科技'], countDict['军事'], countDict['数码'], countDict['社会']))
+
+
+# 释放连接
+conn.close()

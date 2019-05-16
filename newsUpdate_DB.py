@@ -1,6 +1,6 @@
 # coding:utf-8
 # newsUpdate.py
-# 用于更新新闻数据库(更新日志写入数据库)
+# 用于更新新闻数据库(更新日志写入数据库), 日志同样存入数据库
 
 import  urllib.request
 import json
