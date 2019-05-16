@@ -4,4 +4,5 @@
 - newsUpdate.py 用与更新新闻数据库，适合在VPS用crontab定时执行
 - newsCollect.py 用与初次采集新闻，每个频道采集2500条不到的历史新闻
 - keysExtract.py 内有三种提取中文文本关键词的函数(From Jiebe and SnowNLP)
-- 
+- addKeywords_all.py 为数据库内的历史数据添加关键词字段
+- addKeywords_part.py 只更新部分

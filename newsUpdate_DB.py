@@ -11,6 +11,7 @@ import datetime
 import time
 import os
 import logging
+import keysExtract
 
 # 日志配置
 logDate = time.strftime('%Y%m%d', time.localtime(time.time()))
@@ -127,6 +128,7 @@ def channelUpdate(channel):
             newsContent = pymysql.escape_string(rowContent)
             newsHTML = pymysql.escape_string(rowHTML)
             picNum = len(item['imageurls'])
+
             # 处理图片信息
             try:
                 if item['havePic']:
@@ -160,9 +162,12 @@ def channelUpdate(channel):
                     # print("[%s]" % newsSaveTime, "WANR: [%s]频道新闻[%s]正文为空!" % (para_channelName,newsTitle))
                     continue
                 else:
+                    # 检测到未收录再去抽取关键词,这样可以减少提取关键词方法调用的次数
+                    # 提取正文中的关键词
+                    keywords_str = keysExtract.keywords_by_jieba_TF(rowContent)
                     newsCount = newsCount + 1
                     # 定义SQL插入语句
-                    SQL_INSERT = "INSERT INTO %s (id, title, channelName, source, pubtime, savetime, link, havepic, content , html, picurl1, picurl2, picurl3) VALUES ('%s', \"%s\", '%s', '%s', '%s', '%s', '%s', %d, \"%s\", \"%s\",'%s', '%s', '%s')" % (tableName, newsMD5, newsTitle, newsChannelName, newsSource, newsPubtime, newsSaveTime, newsLink, picNum, newsContent, newsHTML, newsPicUrl1, newsPicUrl2, newsPicUrl3)
+                    SQL_INSERT = "INSERT INTO %s (id, title, channelName, source, pubtime, savetime, link, havepic, content , html, picurl1, picurl2, picurl3, keywords) VALUES ('%s', \"%s\", '%s', '%s', '%s', '%s', '%s', %d, \"%s\", \"%s\",'%s', '%s', '%s', '%s')" % (tableName, newsMD5, newsTitle, newsChannelName, newsSource, newsPubtime, newsSaveTime, newsLink, picNum, newsContent, newsHTML, newsPicUrl1, newsPicUrl2, newsPicUrl3, keywords_str)
                     try:
                         cur.execute(SQL_INSERT)
                         # 提交到数据库执行

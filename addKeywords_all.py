@@ -46,8 +46,7 @@ def add_keywords_to_channel(channelName):
     cur.execute(sql_select)
     items = cur.fetchall()
     for item in items:
-        keywords = keysExtract.keywords_by_jieba_TF(item[8])
-        keywords_str = keywords[0] + "/" + keywords[1] + "/" + keywords[2]
+        keywords_str = keysExtract.keywords_by_jieba_TF(item[8])
         #print(keywords_str)
         # 在原表中插入插入关键词
         sql_update = "UPDATE %s set keywords='%s' WHERE id='%s' " % (channelDict[channelName][1], keywords_str, item[0])
