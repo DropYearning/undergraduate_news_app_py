@@ -40,7 +40,7 @@ conn = pymysql.connect(host=dbhost, port=dbport, user=dbuser, passwd=dbpasswd, d
 def add_keywords_to_channel(channelName):
     # 记录开始时间
     starttime = datetime.datetime.now()
-    sql_select = 'select * from %s ' % channelDict[channelName][1]
+    sql_select = 'select * from %s ORDER BY savetime DESC' % channelDict[channelName][1]
     # 使用 cursor()方法创建一个游标对象cursor
     cur = conn.cursor()
     cur.execute(sql_select)
